@@ -1,0 +1,7 @@
+# Aliases
+alias vi="nvim"
+alias vim="nvim"
+alias cat="bat"
+alias rc="nvim ~/.zshrc"
+alias nvimcfg="pushd ~/.config/nvim/lua"
+alias cls="clear && tmux clear-history"
