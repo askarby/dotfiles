@@ -1,0 +1,25 @@
+[core]
+    pager = delta
+	autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    side-by-side = true
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[user]
+	name = Anders Skarby
+	email = anders@skarby.info
