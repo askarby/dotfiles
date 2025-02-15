@@ -12,13 +12,13 @@ source $ZSH/antigen.zsh
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle heroku
-antigen bundle pip
-antigen bundle lein
+antigen bundle asdf
 antigen bundle command-not-found
 antigen bundle fzf
-antigen bundle kiurchv/asdf.plugin.zsh
+antigen bundle git
+antigen bundle heroku
+antigen bundle lein
+antigen bundle pip
 
 # Load the theme.
 antigen theme romkatv/powerlevel10k
