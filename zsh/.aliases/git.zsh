@@ -14,4 +14,4 @@ alias gsw='git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline
 ##################################
 # Other tooling, but git related #
 ##################################
-alias lg)"lazygit"
+alias lg="lazygit"
