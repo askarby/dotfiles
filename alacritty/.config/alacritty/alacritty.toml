@@ -1,0 +1,13 @@
+[window]
+opacity = 0.9
+
+padding.x = 5
+padding.y = 5
+
+decorations = "Transparent"
+
+[font]
+normal.family = "MesloLGS Nerd Font"
+bold.family = "MesloLGS Nerd Font"
+italic.family = "MesloLGS Nerd Font"
+bold_italic.family = "MesloLGS Nerd Font"
