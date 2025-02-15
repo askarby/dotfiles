@@ -18,6 +18,7 @@ antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
 antigen bundle fzf
+antigen bundle kiurchv/asdf.plugin.zsh
 
 # Load the theme.
 antigen theme romkatv/powerlevel10k
@@ -31,6 +32,3 @@ antigen apply
 # Import aliases, environment etc.
 source $HOME/.zshenv
 for f in $HOME/.aliases/*; do source $f; done
-
-# ASDF
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
