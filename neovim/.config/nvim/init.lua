@@ -364,6 +364,9 @@ require("lazy").setup({
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+
+			-- File browser in telescope
+			{ "nvim-telescope/telescope-file-browser.nvim" },
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -402,6 +405,7 @@ require("lazy").setup({
 						require("telescope.themes").get_dropdown(),
 					},
 				},
+				load_extension = "file_browser",
 			})
 
 			-- Enable Telescope extensions if they are installed
@@ -420,6 +424,12 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set(
+				"n",
+				"<leader>sb",
+				":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+				{ desc = "[S]earch Files in file[B]rowser" }
+			)
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -963,8 +973,8 @@ require("lazy").setup({
 	{ -- Smooth scrolling
 		"karb94/neoscroll.nvim",
 		opts = {
-      duration_multiplier = 0.25
-    },
+			duration_multiplier = 0.25,
+		},
 	},
 
 	-- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
