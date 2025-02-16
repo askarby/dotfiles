@@ -1,13 +1,29 @@
+[general]
+import = [
+  # Themes
+  # ------
+  # "~/.config/alacritty/themes/catppuccin-latte.toml"
+  # "~/.config/alacritty/themes/catppuccin-frappe.toml"
+  "~/.config/alacritty/themes/catppuccin-macchiato.toml",
+  # "~/.config/alacritty/themes/catppuccin-mocha.toml"
+
+  # Other includes
+  "~/.config/alacritty/keybindings.toml"
+]
+
 [window]
-opacity = 0.9
+opacity = 0.95
 
 padding.x = 5
 padding.y = 5
 
-decorations = "Transparent"
+decorations = "None"
 
 [font]
 normal.family = "MesloLGS Nerd Font"
 bold.family = "MesloLGS Nerd Font"
 italic.family = "MesloLGS Nerd Font"
 bold_italic.family = "MesloLGS Nerd Font"
+
+[env]
+TERM = "xterm-256color"
