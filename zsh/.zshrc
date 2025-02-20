@@ -32,3 +32,6 @@ antigen apply
 # Import aliases, environment etc.
 source $HOME/.zshenv
 for f in $HOME/.aliases/*; do source $f; done
+
+# Add FZF Git
+source $HOME/.config/zsh/fzf-git.sh
