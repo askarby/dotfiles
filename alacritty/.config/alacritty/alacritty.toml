@@ -20,6 +20,7 @@ padding.y = 5
 decorations = "None"
 
 [font]
+size = 14
 normal.family = "MesloLGS Nerd Font"
 bold.family = "MesloLGS Nerd Font"
 italic.family = "MesloLGS Nerd Font"
