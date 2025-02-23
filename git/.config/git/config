@@ -15,11 +15,14 @@
 
 [diff]
     colorMoved = default
+
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    l = !serie
+
 [user]
 	name = Anders Skarby
 	email = anders@skarby.info
