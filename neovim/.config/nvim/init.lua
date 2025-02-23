@@ -1,4 +1,5 @@
 require("options")
+require("pkgmgr")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -767,7 +768,7 @@ require("lazy").setup({
 			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
-  },
+	},
 
 	-- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
 	--
@@ -780,7 +781,7 @@ require("lazy").setup({
 	-- require 'kickstart.plugins.autopairs',
 	-- require 'kickstart.plugins.neo-tree',
 	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-  require "laf",
+	require("laf"),
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
