@@ -33,5 +33,20 @@ antigen apply
 source $HOME/.zshenv
 for f in $HOME/.aliases/*; do source $f; done
 
+# ... also, allow for configuration that's not in dotfiles
+#     this may be very useful for device specific configuraiton
+DEVICE_CFG_HOME="$HOME/.device-cfg"
+if [ -d $DEVICE_CFG_HOME ]; then
+  # custom environment
+  if [ -f "$DEVICE_CFG_HOME/env.zsh" ]; then
+    source $DEVICE_CFG_HOME/env.zsh
+  fi
+  # custom aliases
+  if [ -d "$DEVICE_CFG_HOME/aliases" ]; then
+    for f in $DEVICE_CFG_HOME/aliases/*; do source $f; done
+  fi
+fi
+
+
 # Add FZF Git
 source $HOME/.config/zsh/fzf-git.sh
