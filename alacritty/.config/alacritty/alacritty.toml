@@ -15,9 +15,9 @@ import = [
 opacity = 0.95
 
 padding.x = 5
-padding.y = 5
+padding.y = 25
 
-decorations = "None"
+decorations = "Transparent"
 
 [font]
 size = 14

@@ -1,0 +1,2 @@
+# We let our tmux.conf install plugins (using TPM)
+plugins/
