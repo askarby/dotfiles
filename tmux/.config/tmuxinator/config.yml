@@ -44,6 +44,8 @@ root: ~/
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
+enable_pane_titles: true
+
 windows:
   - dotfiles:
       layout: main-vertical
@@ -53,3 +55,13 @@ windows:
       layout: main-vertical
       panes:
         - vi ~/.ansible-dev-setup
+  - lazygit:
+      layout: even-horizontal
+      panes:
+        - dotfiles:
+          - cd ~/.dotfiles
+          - lazygit
+        - ansible:
+          - cd ~/.ansible-dev-setup
+          - lazygit
+  - misc:
