@@ -41,7 +41,7 @@ The configuration of [tmux] is configured to be versatile, effective and pleasan
 - [Tmux Plugin Manager][tpm] (installing plugins for tmux customization)
 - [Catppuccin][tmux-catppuccin] (theming for [tmux], using the [Catppuccin theme][catppuccin])
 
-**Notice:** if the theming is without colors, or looks "odd" or "out of place", tell [Tmux Plugin Manager][tpm] to re-intall the 
+**ℹ️ Notice:** if the theming is without colors, or looks "odd" or "out of place", tell [Tmux Plugin Manager][tpm] to re-intall the 
 plugins (this is done by pressing `[CTRL]+[A]` followed by `I`, capital `i`)
 
 In addition to configuring [tmux], [Tmuxinator][tmuxinator] is also configured with a (at this time of writing, at least), a single
@@ -58,6 +58,9 @@ cat cache --build
 # verify the theme exists by executing the following line (show list 4 catppuccin themes)
 bat --list-themes | grep Catppuccin
 ```
+
+**ℹ️ Notice:** the bat(cat) utility has been aliased to the `cat`-command, which means that typing `cat README.md` is equivalent of
+typing `batcat README.md` or `bat README.md`.
 
 <!-- Links -->
 [oh-my-zsh]: https://ohmyz.sh/
