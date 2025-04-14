@@ -18,6 +18,7 @@ padding.x = 5
 padding.y = 25
 
 decorations = "Transparent"
+option_as_alt = "Both"
 
 [font]
 size = 14
