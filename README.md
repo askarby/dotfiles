@@ -48,6 +48,17 @@ In addition to configuring [tmux], [Tmuxinator][tmuxinator] is also configured w
 configuration, to open a [tmux]-session to edit these dotfiles, as well as ansible setup files. This can be accessed by executing
 the command `tmuxinator start config` (or through the alias `config`).
 
+## bat(cat)
+
+The default configuration is configured to use the [Catppuccin theme][catppuccin] (a pattern is slowly emerging here), but to get it to 
+actually work (find the theme), you need to run:
+
+```
+cat cache --build
+# verify the theme exists by executing the following line (show list 4 catppuccin themes)
+bat --list-themes | grep Catppuccin
+```
+
 <!-- Links -->
 [oh-my-zsh]: https://ohmyz.sh/
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
