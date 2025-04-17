@@ -21,7 +21,7 @@ decorations = "Transparent"
 option_as_alt = "OnlyRight"
 
 [font]
-size = 14
+size = 16
 normal.family = "MesloLGS Nerd Font"
 bold.family = "MesloLGS Nerd Font"
 italic.family = "MesloLGS Nerd Font"
