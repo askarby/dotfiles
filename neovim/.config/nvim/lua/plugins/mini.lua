@@ -37,6 +37,22 @@ return {{ -- Collection of various small independent plugins/modules
 
         -- mini icons
         require('mini.icons').setup()
+
+        -- mini files
+        require('mini.files').setup({
+            windows = {
+                preview = true,
+                width_preview = 120,
+                width_nofocus = 25
+            }
+        })
+        vim.keymap.set("n", "<C-,>", function()
+            local buf_name = vim.api.nvim_buf_get_name(0)
+            local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
+            MiniFiles.open(path)
+        end, {
+            desc = "Open Mini Files"
+        })
     end
 }}
 -- vim: ts=2 sts=2 sw=2 et

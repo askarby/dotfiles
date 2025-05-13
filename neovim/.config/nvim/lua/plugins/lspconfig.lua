@@ -20,14 +20,36 @@ return {{
     {
         'williamboman/mason.nvim',
         opts = {}
-    }, 'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim',
+    }, 'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim', 'saghen/blink.nvim',
 
     -- Useful status updates for LSP.
     {
         'j-hui/fidget.nvim',
         opts = {}
     }},
-    config = function()
+    opts = {
+        servers = {
+            angularls = {},
+            harper_ls = {},
+            lua_ls = {
+                -- cmd = { ... },
+                -- filetypes = { ... },
+                -- capabilities = {},
+                settings = {
+                    Lua = {
+                        completion = {
+                            callSnippet = 'Replace'
+                        }
+                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                        -- diagnostics = { disable = { 'missing-fields' } },
+                    }
+                }
+            },
+            prettier = {},
+            ts_ls = {}
+        }
+    },
+    config = function(_, opts)
         -- Brief aside: **What is LSP?**
         --
         -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -78,35 +100,43 @@ return {{
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-t>.
-                map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+                map('gd', function()
+                    Snacks.picker.lsp_definitions({})
+                end, '[G]oto [D]efinition')
 
                 -- Find references for the word under your cursor.
-                map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+                -- map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
                 -- Jump to the implementation of the word under your cursor.
                 --  Useful when your language has ways of declaring types without an actual implementation.
-                map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+                -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
                 -- Jump to the type of the word under your cursor.
                 --  Useful when you're not sure what type a variable is and you want to see
                 --  the definition of its *type*, not where it was *defined*.
-                map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+                -- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
                 -- Fuzzy find all the symbols in your current document.
                 --  Symbols are things like variables, functions, types, etc.
-                map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+                -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
                 -- Fuzzy find all the symbols in your current workspace.
                 --  Similar to document symbols, except searches over your entire project.
-                map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
                 -- Rename the variable under your cursor.
                 --  Most Language Servers support renaming across files, etc.
-                map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+                map('<leader>cr', vim.lsp.buf.rename, '[C]ode [R]ename')
 
                 -- Execute a code action, usually your cursor needs to be on top of an error
                 -- or a suggestion from your LSP for this to activate.
                 map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', {'n', 'x'})
+
+                -- Navigate to next diagnostics item
+                map('<leader>cn', vim.diagnostic.goto_next, '[C]ode Diagnostics - [N]ext', {'n', 'x'})
+
+                -- Navigate to previous diagnostics item
+                map('<leader>cp', vim.diagnostic.goto_prev, '[C]ode Diagnostics - [P]revious', {'n', 'x'})
 
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
                 --  For example, in C this would take you to the header.
@@ -218,45 +248,6 @@ return {{
         --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
         local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-        -- Enable the following language servers
-        --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-        --
-        --  Add any additional override configuration in the following tables. Available keys are:
-        --  - cmd (table): Override the default command used to start the server
-        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --  - settings (table): Override the default settings passed when initializing the server.
-        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-        local servers = {
-            -- clangd = {},
-            -- gopls = {},
-            -- pyright = {},
-            -- rust_analyzer = {},
-            -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-            --
-            -- Some languages (like typescript) have entire language plugins that can be useful:
-            --    https://github.com/pmizio/typescript-tools.nvim
-            --
-            -- But for many setups, the LSP (`ts_ls`) will work just fine
-            -- ts_ls = {},
-            --
-
-            lua_ls = {
-                -- cmd = { ... },
-                -- filetypes = { ... },
-                -- capabilities = {},
-                settings = {
-                    Lua = {
-                        completion = {
-                            callSnippet = 'Replace'
-                        }
-                        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                        -- diagnostics = { disable = { 'missing-fields' } },
-                    }
-                }
-            }
-        }
-
         -- Ensure the servers and tools above are installed
         --
         -- To check the current status of installed tools and/or manually install
@@ -270,25 +261,32 @@ return {{
         --
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
-        local ensure_installed = vim.tbl_keys(servers or {})
-        vim.list_extend(ensure_installed, {'stylua' -- Used to format Lua code
-        })
+        local ensure_installed = vim.tbl_keys(opts.servers or {})
+        vim.list_extend(ensure_installed, {'stylua'})
         require('mason-tool-installer').setup {
             ensure_installed = ensure_installed
         }
 
         require('mason-lspconfig').setup {
-            ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-            automatic_installation = false,
+            ensure_installed = {'angularls', 'lua_ls', 'prettier', 'ts_ls', 'harper_ls'}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+            automatic_installation = true,
             handlers = {function(server_name)
-                local server = servers[server_name] or {}
+                local config = servers[server_name] or {}
                 -- This handles overriding only values explicitly passed
                 -- by the server configuration above. Useful when disabling
                 -- certain features of an LSP (for example, turning off formatting for ts_ls)
-                server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                require('lspconfig')[server_name].setup(server)
+                local blink = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+                config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {}, blink)
+                require('lspconfig')[server_name].setup(config)
             end}
         }
+
+        -- Ensure 
+        -- local lspconfig = require('lspconfig')
+        -- for server, config in pairs(opts.servers) do
+        --     config.capabilities = )
+        --     lspconfig[server].setup(config)
+        -- end
     end
 }}
 -- vim: ts=2 sts=2 sw=2 et

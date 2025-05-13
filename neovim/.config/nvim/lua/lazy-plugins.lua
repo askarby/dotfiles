@@ -13,8 +13,8 @@ require('lazy').setup({ -- NOTE: Plugins can be added with a link (or for a gith
 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 require 'plugins/catppuccin', require 'plugins/cmp', require 'plugins/conform', require 'plugins/treewalker',
 require 'plugins/gitsigns', require 'plugins/lspconfig', require 'plugins/mini', require 'plugins/movement',
-require 'plugins/neo-tree', require 'plugins/noice', require 'plugins/telescope', require 'plugins/todo-comments',
-require 'plugins/treesitter', require 'plugins/which-key'}, {
+require 'plugins/noice', require 'plugins/snacks', require 'plugins/snipe', require 'plugins/smear',
+require 'plugins/todo-comments', require 'plugins/treesitter', require 'plugins/which-key'}, {
     ui = {
         -- If you are using a Nerd Font: set icons to an empty table which will use the
         -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table

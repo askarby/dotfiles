@@ -67,11 +67,14 @@ return {{ -- Useful plugin to show you pending keybinds.
             '<leader>d',
             group = '[D]ocument'
         }, {
+            '<leader>g',
+            group = '[G]it'
+        }, {
             '<leader>r',
             group = '[R]ename'
         }, {
             '<leader>s',
-            group = '[S]earch'
+            group = '[S]earch (or select)'
         }, {
             '<leader>w',
             group = '[W]orkspace'

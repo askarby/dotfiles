@@ -37,10 +37,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Buffer navigation
 vim.keymap.set("n", "<TAB>", ":bn<CR>", {
-    desc = '[B]uffer - Goto [n]ext'
+    desc = 'Goto next buffer'
 })
 vim.keymap.set("n", "<S-TAB>", ":bp<CR>", {
-    desc = '[B]uffer - Goto [p]revious'
+    desc = 'Goto previous buffer'
 })
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", {
     desc = '[B]uffer [D]elete (as in close)'
