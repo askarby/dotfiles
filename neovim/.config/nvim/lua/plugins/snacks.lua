@@ -30,7 +30,7 @@ return {
 				desc = "[S]earch by [G]rep'ing for files",
 			},
 			{
-				"<C-.>",
+				"<leader>ss",
 				function()
 					MiniFiles.close()
 					Snacks.picker.smart({
@@ -40,7 +40,7 @@ return {
 						},
 					})
 				end,
-				desc = "Smart select files",
+				desc = "[S]earch via [S]mart selecting files",
 			},
 			{
 				"<leader>gl",
@@ -63,7 +63,7 @@ return {
 						cwd = vim.fn.stdpath("config"),
 					})
 				end,
-				desc = "[Search] [C]onfig File",
+				desc = "[S]earch [C]onfig File",
 			},
 		},
 		opts = {

@@ -2,11 +2,11 @@
 --  See `:help vim.keymap.set()`
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, {
-    desc = 'Open diagnostic [Q]uickfix list'
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {
+	desc = "Open diagnostic [Q]uickfix list",
 })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -15,8 +15,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, {
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', {
-    desc = 'Exit terminal mode'
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", {
+	desc = "Exit terminal mode",
 })
 
 -- [[ Basic Autocommands ]]
@@ -25,33 +25,33 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', {
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', {
-        clear = true
-    }),
-    callback = function()
-        vim.highlight.on_yank()
-    end
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", {
+		clear = true,
+	}),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- Buffer navigation
 vim.keymap.set("n", "<TAB>", ":bn<CR>", {
-    desc = 'Goto next buffer'
+	desc = "Goto next buffer",
 })
 vim.keymap.set("n", "<S-TAB>", ":bp<CR>", {
-    desc = 'Goto previous buffer'
+	desc = "Goto previous buffer",
 })
 vim.keymap.set("n", "<leader>bd", ":bd<CR>", {
-    desc = '[B]uffer [D]elete (as in close)'
+	desc = "[B]uffer [D]elete (as in close)",
 })
 
 -- Scrolling
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {
-    desc = "scroll up and center"
+	desc = "scroll up and center",
 })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {
-    desc = "scroll down and center"
+	desc = "scroll down and center",
 })
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -25,6 +25,7 @@
   "smear-cursor.nvim": { "branch": "main", "commit": "162703638203060b1d3412e73429d232bbd2627e" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "snipe.nvim": { "branch": "main", "commit": "2a1b738dfae8502e6162eddfc774da65ed404142" },
+  "tiny-code-action.nvim": { "branch": "main", "commit": "3204f45e4102788486f440259e09d50046081675" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "treewalker.nvim": { "branch": "main", "commit": "34bf0a6044e0b5e3d93b7012ae7bdf457de91ba1" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
