@@ -20,7 +20,6 @@ require("lazy").setup({ -- NOTE: Plugins can be added with a link (or for a GitH
 	require("plugins/lspconfig"),
 	require("plugins/mini"),
 	require("plugins/movement"),
-	require("plugins/noice"),
 	require("plugins/snacks"),
 	require("plugins/snipe"),
 	require("plugins/smear"),
