@@ -22,6 +22,7 @@
     ci = commit
     st = status
     l = !serie
+    lg = !lazygit
 
 [user]
 	name = Anders Skarby

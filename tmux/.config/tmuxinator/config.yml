@@ -44,7 +44,7 @@ root: ~/
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
 
-enable_pane_titles: true
+enable_pane_titles: false
 
 windows:
   - dotfiles:

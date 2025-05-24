@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# Utility script that copies a password from "1Password" to the clipboard
+# 
+# (the password is cleared (from the clipboard) after a configured amount of seconds)
+
+# Configuration options
+TIMEOUT=10
+
+# Functions
+function copy_password {
+	local SELECTED_ITEM_ID=`echo "$1" | cut -f2 -d$'\t'`
+	local SELECTED_ITEM_TITLE=`echo "$1" | cut -f1 -d$'\t'`
+	PASSWORD=`op item get "$SELECTED_ITEM_ID" --field password --reveal`
+
+	# Copy to clipboard
+	echo "$PASSWORD" | pbcopy
+
+	# Clear the contents of the clipboard (after the timeout period)
+	(sleep "$TIMEOUT" && echo -n | pbcopy) &
+	success "Password (for "$SELECTED_ITEM_TITLE") is now in clipboard, but will be cleared in $TIMEOUT seconds..."
+}
+
+function error {
+	local MESSAGE=$1
+	echo "🛑 $MESSAGE"
+	echo ""
+	exit 255
+}
+
+function success {
+	local MESSAGE=$1
+	echo "✅ $MESSAGE" 
+	echo ""
+}
+
+function display_help {
+	echo "Naval Fate."
+	echo ""
+	echo "Usage:"
+	echo "  naval_fate ship new <name>..."
+	echo "  naval_fate ship <name> move <x> <y> [--speed=<kn>]"
+  naval_fate ship shoot <x> <y>
+  naval_fate mine (set|remove) <x> <y> [--moored|--drifting]
+  naval_fate -h | --help
+  naval_fate --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+  --speed=<kn>  Speed in knots [default: 10].
+  --moored      Moored (anchored) mine.
+  --drifting    Drifting mine.
+}
+
+# Parse options from commandline
+function die() { echo "$*" >&2; exit 2; }  # complain to STDERR and exit with error
+function needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
+
+# Defaults (to be thorough, you could also assign alpha="" and charlie="")
+bravo="$HOME/Downloads"       # Overridden by the value set by -b or --bravo
+charlie_default="brown"       # Only set given -c or --charlie without an arg
+
+while getopts ab:c-: OPT; do  # allow -a, -b with arg, -c, and -- "with arg"
+  # support long options: https://stackoverflow.com/a/28466267/519360
+  if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
+    OPT="${OPTARG%%=*}"       # extract long option name
+    OPTARG="${OPTARG#"$OPT"}" # extract long option argument (may be empty)
+    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
+  fi
+  case "$OPT" in
+    a | alpha )    alpha=true ;;
+    b | bravo )    needs_arg; bravo="$OPTARG" ;;
+    c | charlie )  charlie="${OPTARG:-$charlie_default}" ;;  # optional argument
+    \? )           exit 2 ;;  # bad short option (error reported via getopts)
+    * )            die "Illegal option --$OPT" ;;            # bad long option
+  esac
+done
+shift $((OPTIND-1)) # remove parsed options and args from $@ list
+
+
+echo "alpha: $alpha"
+echo "bravo: $bravo"
+echo "charlie: $charlie"
+die 'Oh no!'
+
+# Use FZF to show a list of passwords to copy
+LOGIN_ITEMS=`op item list --categories Login --format json | jq -r '.[] | .title + "\t" + .id'`
+EXIT_CODE=0
+SELECTION=`echo "$LOGIN_ITEMS" | fzf --reverse --with-nth=1 --delimiter="\t" --preview "op item get {2}"` || EXIT_CODE=1
+if [[ $EXIT_CODE -eq 0 ]]; then
+	copy_password "$SELECTION"
+else
+	error "No item was selected, or unable to obtain access to 1Password!"
+fi

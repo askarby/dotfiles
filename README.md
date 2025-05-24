@@ -62,6 +62,62 @@ bat --list-themes | grep Catppuccin
 **ℹ️ Notice:** the bat(cat) utility has been aliased to the `cat`-command, which means that typing `cat README.md` is equivalent of
 typing `batcat README.md` or `bat README.md`.
 
+## NeoMutt
+
+[NeoMutt][neomutt] has been configured with the following extensions:
+
+- [Glow][glow], used for rendering Markdown (well, e-mails, in this case)
+
+It's been configured with my e-mail accounts, reading passwords through [pass], and acquiring credentials for the password store through 
+[GnuPG][gpg] (The GNU Privacy Guard). Since I do not want to checking my password store, nor GPG keys, these need to be manually configured
+(don't worry, I've listed the steps below):
+
+### Configuring `gpg`
+
+There are two ways of configuring [GnuPG][gpg], which are by creating a new key, or importing an existing key. Either way, you'll need a key,
+to add entries to [pass] - luckily, both ways are listed below.
+
+**ℹ️ Notice:** It's assumed that you're running [gpg] version 2.x, this can be verified by issueing the command `gpg --version`!
+
+#### New key
+
+To generate a new key, simply enter: `gpg --full-generate-key` and follow the instructions (You can press enter at any of the configuration 
+options, apart from the step that requires you to enter your full name, and e-mail).
+
+You can now see your generated (private / secret) key by entering: `gpg --list-secret-keys --keyid-format=long`
+
+```
+[keyboxd]
+---------
+sec   ed25519/<gpg key id> 2025-04-15 [SC]
+      <key>
+uid                 [ultimate] Anders Paarup Skarby <anders@skarby.info>
+ssb   cv25519/<secret sub key id> 2025-04-15 [E]
+```
+
+where `<gpg key id>` is needed for configuring [pass] (later on in this guide)
+
+#### Import existing key
+
+Importing an existing key is a simple matter of executing a single command, here (in this example) we asume that they (private) key is
+contained in a file called `private.key`.
+
+Simply execute the following command:
+
+```
+gpg --import private.key
+```
+
+For good measure, exporting a key is a matter of executing the following command:
+
+- For listing the avaialble keys, execute: `gpg --list-keys` (or `gpg --list-secret-keys`)
+- For exporting the public key, execute: `gpg --output <output file> --export <key id>`
+- For exporting the private (secret) keys, execute: `gpg --output <output file> --export-secret-key --export <key id>`
+
+### Configuring `pass`
+
+TODO: Two guides, 1 for creating a new password store, and 1 for importing an existing one
+
 <!-- Links -->
 [oh-my-zsh]: https://ohmyz.sh/
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k
@@ -71,3 +127,7 @@ typing `batcat README.md` or `bat README.md`.
 [tpm]: https://github.com/tmux-plugins/tpm
 [tmux-catppuccin]: https://github.com/catppuccin/tmux
 [tmuxinator]: https://github.com/tmuxinator/tmuxinator
+[neomutt]: https://neomutt.org/
+[glow]: https://github.com/charmbracelet/glow
+[pass]: https://www.passwordstore.org/
+[gpg]: https://gnupg.org/
