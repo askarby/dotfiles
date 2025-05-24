@@ -46,12 +46,4 @@ vim.keymap.set("n", "<leader>bd", ":bd<CR>", {
 	desc = "[B]uffer [D]elete (as in close)",
 })
 
--- Scrolling
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {
-	desc = "scroll up and center",
-})
-vim.keymap.set("n", "<C-d>", "<C-d>zz", {
-	desc = "scroll down and center",
-})
-
 -- vim: ts=2 sts=2 sw=2 et

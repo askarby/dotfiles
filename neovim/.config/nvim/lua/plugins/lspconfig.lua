@@ -53,8 +53,9 @@ return {
 						},
 					},
 				},
-				prettier = {},
+				prettierd = {},
 				ts_ls = {},
+				eslint = {},
 			},
 		},
 		config = function(_, opts)
@@ -287,7 +288,7 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "angularls", "lua_ls", "prettier", "ts_ls", "harper_ls" }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+				ensure_installed = { "angularls", "lua_ls", "ts_ls", "harper_ls", "eslint" }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 				automatic_installation = true,
 				handlers = {
 					function(server_name)
