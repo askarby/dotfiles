@@ -25,6 +25,8 @@ return {
 						filter = {
 							cwd = true,
 						},
+						hidden = true,
+						exclude = { "lazy-lock.json", "package-lock.json", "yarn.lock", "node_modules" },
 					})
 				end,
 				desc = "[S]earch by [G]rep'ing for files",
@@ -67,7 +69,11 @@ return {
 			},
 		},
 		opts = {
-			picker = {},
+			picker = {
+				sources = {
+					files = { hidden = true },
+				},
+			},
 		},
 	},
 }
