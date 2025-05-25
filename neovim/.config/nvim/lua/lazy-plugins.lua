@@ -11,6 +11,7 @@
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({ -- NOTE: Plugins can be added with a link (or for a GitHub repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	require("plugins/ai"),
 	require("plugins/catppuccin"),
 	require("plugins/cmp"),
 	require("plugins/conform"),
@@ -18,6 +19,7 @@ require("lazy").setup({ -- NOTE: Plugins can be added with a link (or for a GitH
 	require("plugins/gitsigns"),
 	require("plugins/indent_line"),
 	require("plugins/lspconfig"),
+	require("plugins/markdown"),
 	require("plugins/mini"),
 	require("plugins/movement"),
 	require("plugins/snacks"),

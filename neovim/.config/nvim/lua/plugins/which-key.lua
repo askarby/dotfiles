@@ -68,6 +68,11 @@ return {
 					mode = { "n", "x" },
 				},
 				{
+					"<leader>cc",
+					group = "[C]ode [C]ompanion",
+					mode = { "n", "x" },
+				},
+				{
 					"<leader>d",
 					group = "[D]ocument",
 				},
