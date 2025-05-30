@@ -19,6 +19,7 @@ require("lazy").setup({ -- NOTE: Plugins can be added with a link (or for a GitH
 	require("plugins/gitsigns"),
 	require("plugins/indent_line"),
 	require("plugins/lspconfig"),
+	require("plugins/lsp-saga"),
 	require("plugins/markdown"),
 	require("plugins/mini"),
 	require("plugins/movement"),
