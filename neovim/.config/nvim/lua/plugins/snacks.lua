@@ -59,6 +59,14 @@ return {
 				desc = "[G]it [L]og",
 			},
 			{
+				"<leader>gL",
+				function()
+					MiniFiles.close()
+					Snacks.lazygit.open({})
+				end,
+				desc = "[L]azy [G]it",
+			},
+			{
 				"<leader>sc",
 				function()
 					Snacks.picker.files({
@@ -74,6 +82,7 @@ return {
 					files = { hidden = true },
 				},
 			},
+			lazygit = {},
 		},
 	},
 }
