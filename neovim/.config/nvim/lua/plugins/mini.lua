@@ -52,7 +52,7 @@ return {
 				local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
 				MiniFiles.open(path)
 			end, {
-				desc = "[E]xplore using Mini Files",
+				desc = "[E]xplore using [M]ini Files",
 			})
 		end,
 	},
