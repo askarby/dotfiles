@@ -56,6 +56,13 @@ return {
 				prettierd = {},
 				ts_ls = {},
 				eslint = {},
+				tinymist = {
+					settings = {
+						formatterMode = "typstyle",
+						exportPdf = "onType",
+						semanticTokens = "disable",
+					},
+				},
 			},
 		},
 		config = function(_, opts)

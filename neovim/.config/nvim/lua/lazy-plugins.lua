@@ -29,9 +29,11 @@ require("lazy").setup({ -- NOTE: Plugins can be added with a link (or for a GitH
 	require("plugins/todo-comments"),
 	require("plugins/treesitter"),
 	require("plugins/trouble"),
+	require("plugins/typst"),
 	require("plugins/which-key"),
 	require("plugins/css"),
 	require("plugins/tiny-code-action"),
+	require("plugins/videre"),
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
