@@ -55,7 +55,7 @@ return {
 	},
 	{
 		"saghen/blink.cmp",
-		build = "cargo build --release", -- for delimiters
+		version = "1.*",
 		opts = {
 			completion = {
 				menu = {
