@@ -2,6 +2,7 @@ return {
 	{
 		"folke/snacks.nvim",
 		---@type snacks.Config
+		lazy = false,
 		keys = {
 			{
 				"<leader>sr",
@@ -32,6 +33,19 @@ return {
 				desc = "[S]earch by [G]rep'ing for files",
 			},
 			{
+				"<leader>st",
+				function()
+					MiniFiles.close()
+					Snacks.picker.lsp_type_definitions({
+						layout = "ivy",
+						filter = {
+							cwd = true,
+						},
+					})
+				end,
+				desc = "[S]earch for [T]ypes",
+			},
+			{
 				"<leader>ss",
 				function()
 					MiniFiles.close()
@@ -43,6 +57,14 @@ return {
 					})
 				end,
 				desc = "[S]earch via [S]mart selecting files",
+			},
+			{
+				"<leader>sb",
+				function()
+					MiniFiles.close()
+					Snacks.picker.buffers()
+				end,
+				desc = "Buffers",
 			},
 			{
 				"<leader>gl",

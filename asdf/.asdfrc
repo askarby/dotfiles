@@ -4,3 +4,6 @@
 # you can have it read an existing .nvmrc or .node-version file to find out what version of Node.js 
 # should be used.
 legacy_version_file = yes
+
+java_macos_integration_enable=yes
+

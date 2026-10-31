@@ -38,7 +38,6 @@ return {
 		opts = {
 			servers = {
 				angularls = {},
-				harper_ls = {},
 				lua_ls = {
 					-- cmd = { ... },
 					-- filetypes = { ... },
@@ -54,7 +53,6 @@ return {
 					},
 				},
 				prettierd = {},
-				ts_ls = {},
 				eslint = {},
 				tinymist = {
 					settings = {
@@ -295,7 +293,7 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "angularls", "lua_ls", "ts_ls", "harper_ls", "eslint" }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 				automatic_installation = true,
 				handlers = {
 					function(server_name)
@@ -311,6 +309,11 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

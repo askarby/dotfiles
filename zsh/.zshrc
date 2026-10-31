@@ -57,3 +57,34 @@ source $HOME/.config/zsh/fzf-git.sh
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
+# Ensure JAVA_HOME is set for asdf-java
+source ~/.asdf/plugins/java/set-java-home.zsh
+
+
+# bun completions
+[ -s "/Users/askarby/.bun/_bun" ] && source "/Users/askarby/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# flutter
+export FLUTTER_HOME="/Users/askarby/tools/flutter"
+export PATH="$FLUTTER_HOME/bin:$PATH"
+
+# ruby
+export RUBY_HOME="/opt/homebrew/opt/ruby"
+export PATH="$RUBY_HOME/bin:$PATH"
+
+# android
+export ANDROID_HOME="/Users/askarby/Library/Android/sdk"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/askarby/.lmstudio/bin"
+# End of LM Studio CLI section
+

@@ -42,7 +42,7 @@ return {
 			-- mini files
 			require("mini.files").setup({
 				windows = {
-					preview = true,
+					preview = false,
 					width_preview = 120,
 					width_nofocus = 25,
 				},

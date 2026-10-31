@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # This script restores all staged and unstaged changes and removes untracked files
 
 set -e
@@ -8,24 +10,36 @@ if ! git rev-parse --git-dir >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "This will:"
-echo "  - Unstage all staged changes"
-echo "  - Discard all unstaged changes"
-echo "  - Remove all untracked files and directories"
-echo ""
-echo "WARNING: This action cannot be undone!"
-echo ""
+# Determine if "forcing" the run (e.g. "no verification prompt")
+FORCE=0
 
-# Show what will be affected
-echo "Status before cleanup:"
-git status --short
-echo ""
+for arg in "$@"; do
+  if [ "$arg" = "-f" ] || [ "$arg" = "--force" ]; then
+    FORCE=1
+    break
+  fi
+done
 
-read -p "Are you sure you want to proceed? (yes/no): " confirmation
+if [ $FORCE -eq 0 ]; then
+  echo "This will:"
+  echo "  - Unstage all staged changes"
+  echo "  - Discard all unstaged changes"
+  echo "  - Remove all untracked files and directories"
+  echo ""
+  echo "WARNING: This action cannot be undone!"
+  echo ""
 
-if [ "$confirmation" != "yes" ]; then
-  echo "Operation cancelled"
-  exit 0
+  # Show what will be affected
+  echo "Status before cleanup:"
+  git status --short
+  echo ""
+
+  read -p "Are you sure you want to proceed? (yes/no): " confirmation
+
+  if [ "$confirmation" != "yes" ]; then
+    echo "Operation cancelled"
+    exit 0
+  fi
 fi
 
 echo ""
@@ -38,6 +52,8 @@ git reset HEAD
 git checkout -- .
 
 # Remove all untracked files and directories
+git clean -fd
+# ... doesn't delete everything the first time around, do it again!
 git clean -fd
 
 echo ""

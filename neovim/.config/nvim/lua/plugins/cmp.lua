@@ -45,11 +45,12 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		opts = {
-			suggestion = { enabled = false },
+			suggestion = { enabled = true },
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,
 				help = true,
+				typescript = true,
 			},
 		},
 	},
